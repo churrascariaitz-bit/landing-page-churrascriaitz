@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Churrascaria Imperatriz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2a1a12;--card:#f6ead3;--ink:#2b1a10;--mute:#6b5646;--line:#d5bf9a;--acc:#b3200f;--acc-ink:#fff;--ok:#1f7a4d;--gold:#e8a317;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150d09;--card:#2b1d15;--ink:#f6ead3;--mute:#c2ad92;--line:#4a3426;--acc:#e2452b;--ok:#4cc38a}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg) repeating-linear-gradient(90deg,transparent 0 78px,rgba(0,0,0,.28) 78px 80px);color:var(--ink);font-family:'Bitter',Georgia,serif;line-height:1.45}
+main{max-width:560px;margin:0 auto;padding:20px 16px 120px}
+h1{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:clamp(2rem,9vw,3rem);line-height:1;margin:6px 0 8px;color:#f6ead3;text-transform:uppercase;text-shadow:0 3px 0 #b3200f,0 6px 14px rgba(0,0,0,.5)}
+.hero{text-align:center;padding:6px 0 18px}.hero svg{width:100%;max-width:420px;height:auto;display:block;margin:0 auto 6px}
+.kicker{color:var(--gold);letter-spacing:.14em;font-size:.8rem;font-weight:800;text-transform:uppercase;margin:0}
+.sub{color:#e9d6b4;margin:0}
+section{background:var(--card);border:2px solid var(--line);border-top:6px solid var(--acc);border-radius:6px;padding:16px;margin-bottom:16px;box-shadow:0 6px 0 rgba(0,0,0,.35)}
+h2{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:1.15rem;margin:0 0 4px;text-transform:uppercase;letter-spacing:.04em;color:var(--acc)}
+.hint{font-size:.85rem;color:var(--mute);margin:0 0 10px}
+label.opt{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin-top:8px;cursor:pointer;min-height:48px}
+label.opt:has(input:checked){border-color:var(--acc);background:color-mix(in srgb,var(--acc) 9%,var(--card))}
+label.opt span.p{margin-left:auto;font-weight:800}
+input[type=checkbox],input[type=radio]{width:20px;height:20px;accent-color:var(--acc);flex:none}
+input[type=text],textarea,select{width:100%;font:inherit;color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,var(--card));border:1px solid var(--line);border-radius:6px;padding:12px;margin-top:8px}
+textarea{min-height:76px;resize:vertical}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.qty{display:flex;align-items:center;gap:14px;margin-top:8px}
+.qty button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:color-mix(in srgb,var(--ink) 6%,var(--card));color:var(--ink);font-size:1.4rem;cursor:pointer}
+.qty b{min-width:28px;text-align:center;font-size:1.2rem}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.bar div{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.tot{font-size:.8rem;color:var(--mute);line-height:1.2}
+.tot strong{display:block;font-size:1.4rem;color:var(--ink)}
+#enviar{flex:1;background:var(--ok);color:#fff;border:0;border-radius:12px;font:inherit;font-weight:800;font-size:1.05rem;padding:14px;cursor:pointer}
+#enviar:hover{filter:brightness(1.08)}
+#erro{color:var(--acc);font-weight:600;margin:6px 0 0;min-height:1.2em}
+.add{width:100%;margin-top:6px;padding:14px;border:2px dashed var(--acc);background:transparent;color:var(--acc);font:inherit;font-weight:800;border-radius:6px;cursor:pointer}
+.item{border:1px solid var(--line);border-radius:6px;padding:10px 12px;margin-top:10px;font-size:.9rem}
+.item b{display:block}
+.item button{display:block;margin-top:4px;background:none;border:0;color:var(--acc);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;min-height:44px;padding:0}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <svg viewBox="0 0 420 130" role="img" aria-label="Espeto de carne sobre as brasas"><defs><path id="f" d="M0 50C-2 30 14 22 10 4C28 16 36 34 28 50Z"/></defs><line x1="20" y1="42" x2="400" y2="42" stroke="#d9d9d9" stroke-width="4" stroke-linecap="round"/><rect x="60" y="22" width="62" height="40" rx="16" fill="#8a3a1e"/><rect x="132" y="22" width="62" height="40" rx="16" fill="#a8482a"/><rect x="204" y="22" width="62" height="40" rx="16" fill="#8a3a1e"/><rect x="276" y="22" width="62" height="40" rx="16" fill="#a8482a"/><g transform="translate(0 74)"><use href="#f" x="14" fill="#e2452b"/><use href="#f" x="56" fill="#e8a317"/><use href="#f" x="98" fill="#e2452b"/><use href="#f" x="140" fill="#e8a317"/><use href="#f" x="182" fill="#e2452b"/><use href="#f" x="224" fill="#e8a317"/><use href="#f" x="266" fill="#e2452b"/><use href="#f" x="308" fill="#e8a317"/><use href="#f" x="350" fill="#e2452b"/></g><rect x="6" y="124" width="408" height="6" rx="3" fill="#5a2a14"/></svg>
+    <p class="kicker">★ O melhor churrasco da cidade! ★</p>
+    <h1>Churrascaria<br>Imperatriz</h1>
+    <p class="sub">Monte sua marmita, tire o que não quer e envie o pedido pelo WhatsApp. Retirada no local.</p>
+  </header>
+
+  <section>
+    <h2>Tamanho</h2>
+    <label class="opt"><input type="radio" name="tam" value="M (Média)" data-preco="40" checked> Marmitex M (Média) <span class="p">R$ 40</span></label>
+    <label class="opt"><input type="radio" name="tam" value="G (Grande)" data-preco="50"> Marmitex G (Grande) <span class="p">R$ 50</span></label>
+    
+  </section>
+
+  <section>
+    <h2>Acompanhamentos</h2>
+    <p class="hint">Tudo já vem marcado. Desmarque o que não quiser.</p>
+    <div id="acomp"></div>
+  </section>
+
+  <section>
+    <h2>Carnes</h2>
+    <p class="hint">Desmarque as que não quiser.</p>
+    <div id="carnes"></div>
+  </section>
+
+  <section>
+    <h2>Adicional</h2>
+    <p class="hint">Salada e legumes juntos, por R$ 3.</p>
+    <div id="extras"></div>
+  </section>
+
+  <section>
+    <h2>Seu pedido</h2>
+    <p class="hint">Quer mais de uma marmita, de tamanhos ou sabores diferentes? Monte uma, toque em adicionar e monte a próxima.</p>
+    <button type="button" id="add" class="add">+ Adicionar esta marmita ao pedido</button>
+    <div id="lista"></div>
+  </section>
+
+  <section>
+    <h2>Seus dados</h2>
+    <input type="text" id="nome" placeholder="Seu nome" autocomplete="name">
+    <select id="pag" aria-label="Forma de pagamento">
+      <option>Pix</option><option>Dinheiro</option><option>Cartão</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>Observação</h2>
+    <textarea id="obs" placeholder="Ex.: sem pimenta, troco para R$ 50"></textarea>
+    <p id="erro" role="alert"></p>
+  </section>
+</main>
+
+<div class="bar"><div>
+  <div class="tot">Total<strong id="total">R$ 40</strong></div>
+  <button type="button" id="enviar">Enviar pedido no WhatsApp</button>
+</div></div>
+
+<script>
+const WHATS = "5599991251249";
+const ACOMP = ["Arroz branco","Feijão de caldo","Feijão tropeiro","Macarrão","Banana frita","Macaxeira frita","Salada de tomate e pepino"];
+const CARNES = ["Gado","Frango","Linguiça"];
+const EXTRAS = ["Mais salada e legumes"];
+
+function montar(id, lista, grupo, marcado){
+  document.getElementById(id).innerHTML = lista.map(function(x){
+    return '<label class="opt"><input type="checkbox" name="'+grupo+'" value="'+x+'"'+(marcado?' checked':'')+'> '+x+'</label>';
+  }).join("");
+}
+montar("acomp", ACOMP, "acomp", true);
+montar("carnes", CARNES, "carnes", true);
+document.getElementById("extras").innerHTML = EXTRAS.map(function(x){
+  return '<label class="opt"><input type="checkbox" name="extras" value="'+x+'"> '+x+' <span class="p">+ R$ 3</span></label>';
+}).join("");
+const PRECO_EXTRA = 3;
+
+let cart = [];
+function marcados(g){ return Array.from(document.querySelectorAll('input[name="'+g+'"]:checked')).map(function(i){return i.value;}); }
+function tamanho(){ return document.querySelector('input[name="tam"]:checked'); }
+function atual(){
+  const t = tamanho();
+  return {tam:t.value, preco:Number(t.dataset.preco), acomp:marcados("acomp"), carnes:marcados("carnes"), extra:marcados("extras").length>0};
+}
+function itemValido(i){ return i.acomp.length>0 || i.carnes.length>0; }
+function precoItem(i){ return i.preco + (i.extra ? PRECO_EXTRA : 0); }
+function totalPedido(){ return cart.length ? cart.reduce(function(s,i){return s+precoItem(i);},0) : precoItem(atual()); }
+function atualizar(){ document.getElementById("total").textContent = "R$ " + totalPedido(); }
+function resetar(){
+  document.querySelectorAll('input[name="acomp"],input[name="carnes"]').forEach(function(i){i.checked=true;});
+  document.querySelectorAll('input[name="extras"]').forEach(function(i){i.checked=false;});
+  document.querySelector('input[name="tam"]').checked = true;
+}
+function desenhar(){
+  document.getElementById("lista").innerHTML = cart.map(function(i,n){
+    return '<div class="item"><b>Marmitex '+i.tam+' · R$ '+precoItem(i)+'</b>'+(i.acomp.join(", ")||"sem acompanhamentos")+' | '+(i.carnes.join(", ")||"sem carnes")+(i.extra?' | + salada e legumes':'')+'<button type="button" data-rm="'+n+'">Remover</button></div>';
+  }).join("");
+}
+function itensTexto(){
+  const out = [];
+  cart.forEach(function(i,n){
+    out.push("*Marmitex "+(n+1)+":* "+i.tam+" - R$ "+i.preco);
+    out.push("Acompanhamentos: "+(i.acomp.join(", ")||"nenhum"));
+    out.push("Carnes: "+(i.carnes.join(", ")||"nenhuma"));
+    if(i.extra) out.push("Adicional (R$ 3): Mais salada e legumes");
+    out.push("");
+  });
+  return out;
+}
+document.addEventListener("change", atualizar);
+document.getElementById("add").onclick = function(){
+  const a = atual(), erro = document.getElementById("erro");
+  if(!itemValido(a)){ erro.textContent = "Escolha pelo menos um item."; return; }
+  erro.textContent = ""; cart.push(a); resetar(); desenhar(); atualizar();
+};
+document.getElementById("lista").onclick = function(e){
+  const n = e.target.getAttribute("data-rm");
+  if(n !== null){ cart.splice(Number(n),1); desenhar(); atualizar(); }
+};
+
+document.getElementById("enviar").onclick = function(){
+  const nome = document.getElementById("nome").value.trim();
+  const erro = document.getElementById("erro");
+  if(!nome){ erro.textContent = "Preencha seu nome."; return; }
+  if(!cart.length){
+    const a = atual();
+    if(!itemValido(a)){ erro.textContent = "Escolha pelo menos um item."; return; }
+    cart.push(a); desenhar();
+  }
+  erro.textContent = "";
+  const total = totalPedido();
+  const obs = document.getElementById("obs").value.trim();
+  const linhas = [
+    "*NOVO PEDIDO*",
+    "",
+    ...itensTexto(),
+    "*Total:* R$ " + total,
+    "*Pagamento:* " + document.getElementById("pag").value,
+    "*Nome:* " + nome,
+    "*Retirada no local*"
+  ];
+  linhas.push("", "*Observação:* " + (obs || "nenhuma"));
+  window.open("https://wa.me/" + WHATS + "?text=" + encodeURIComponent(linhas.join("\n")), "_blank");
+};
+atualizar();
+</script>
+</body>
+</html>
